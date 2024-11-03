@@ -144,6 +144,7 @@
 
 <body class="p-4 md:p-8">
 
+    <!-- Input-->
     <div class="max-w-4xl mx-auto bg-white/95 p-6 md:p-8 rounded-2xl shadow-xl backdrop-blur-sm">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
             <div>
@@ -187,7 +188,56 @@
             </form>
         </div>
 
+        <!-- To-do Section -->
+        <div class="mt-10">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-4">To-do List</h2>
+            <div class="flex gap-3 mb-6">
+                <input id="todo-input" type="text" placeholder="Add a new task"
+                    class="flex-1 px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200">
+                <button id="add-todo-btn"
+                    class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-colors duration-200 font-medium shadow-md hover:shadow-lg">
+                    Add
+                </button>
+            </div>
+            <ul id="todo-list" class="space-y-3 max-h-64 overflow-y-auto custom-scrollbar pr-2"></ul>
+        </div>
+
+        <!-- Upcoming Events Section -->
+        <div class="mt-10">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-4">Upcoming Events</h2>
+            <div class="space-y-3">
+                <div class="bg-indigo-50 p-5 rounded-xl card-hover">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-gray-900 font-semibold mb-1">Meeting with Reginald DesRoches</h3>
+                            <p class="text-gray-600 text-sm">The Rice Memorial Center</p>
+                        </div>
+                        <span class="text-indigo-600 font-medium">November 30, 1 PM</span>
+                    </div>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-xl card-hover">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-gray-900 font-semibold mb-1">Flag Football Practice</h3>
+                            <p class="text-gray-600 text-sm">Field 6</p>
+                        </div>
+                        <span class="text-indigo-600 font-medium">November 30, 8 PM</span>
+                    </div>
+                </div>
+                <div class="bg-indigo-50 p-5 rounded-xl card-hover">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h3 class="text-gray-900 font-semibold mb-1">Meeting with Joshua Klinge</h3>
+                            <p class="text-gray-600 text-sm">Virtual Meeting</p>
+                        </div>
+                        <span class="text-indigo-600 font-medium">November 30, 8 AM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 
     <!-- Timer module -->
     <div class="max-w-4xl mx-auto bg-white/95 p-6 md:p-8 rounded-2xl shadow-xl backdrop-blur-sm mt-10 hidden">
