@@ -1,10 +1,20 @@
 {
 	"manifest_version": 3,
 	"name": "LockIn",
-	"description": "",
+	"description": "An AI-powered productivity tool that helps you stay focused and organized.",
+	"icons": {
+		"16": "files/assets/images/monkey-face-icon.png",
+		"48": "files/assets/images/monkey-face-icon.png",
+		"128": "files/assets/images/monkey-face-icon.png"
+	},
 	"version": "0.1",
 	"action": {
-		"default_popup": "files/dashboard.html"
+		"default_popup": "files/dashboard.html",
+		"default_icon": {
+			"16": "files/assets/images/monkey-face-icon.png",
+			"48": "files/assets/images/monkey-face-icon.png",
+			"128": "files/assets/images/monkey-face-icon.png"
+		}
 	},
 	"permissions": ["tabs", "webNavigation", "activeTab", "storage"],
 	"host_permissions": ["<all_urls>"],
