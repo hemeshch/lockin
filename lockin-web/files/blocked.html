@@ -31,33 +31,25 @@
 <body class="p-4 md:p-8">
     <div class="max-w-2xl w-full bg-white/95 p-6 md:p-8 rounded-2xl shadow-xl backdrop-blur-sm">
         <!-- Header Section -->
-        <div class="text-center mb-8">
 
-            <div class="max-w-md mx-auto p-4">
-                <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 shadow-sm">
-                    <div class="flex items-center justify-center gap-2">
-                        <div class="bg-blue-100 p-1.5 rounded-full">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="text-blue-600">
-                                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-                                <path d="m9 10 2 2 4-4" />
-                            </svg>
-                        </div>
-                        <p class="text-blue-700 text-sm font-medium">The link has been saved for later.</p>
-                    </div>
-                </div>
+
+        <div class="max-w-[100px] mx-auto mb-6">
+            <div class="aspect-square overflow-hidden rounded-xl">
+                <img src="./assets/images/monkey-sad-icon-2.png" alt="Square image"
+                    class="h-full w-full object-cover hover:scale-105 transition-transform duration-300" />
             </div>
+        </div>
+
+        <div class="text-center mb-8">
 
             <h1 class="text-4xl font-bold text-indigo-900 mb-6">This might be a distraction...</h1>
 
-            <div class="max-w-2xl mx-auto p-4">
+            <div class="max-w-2xl mx-auto p-0">
                 <p class="text-gray-600 text-lg" id="focus-task">
                     <span class="font-medium">Your Task:</span>
                     <span id="display-task" class="ml-1"></span>
                 </p>
             </div>
-
         </div>
 
         <!-- Action Buttons -->
@@ -71,6 +63,22 @@
                 class="w-full px-8 py-4 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition-colors duration-200 font-medium">
                 Close this tab
             </button>
+        </div>
+
+        <div class="max-w-md mx-auto p-4">
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 shadow-sm">
+                <div class="flex items-center justify-center gap-2">
+                    <div class="bg-blue-100 p-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="text-blue-600">
+                            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                            <path d="m9 10 2 2 4-4" />
+                        </svg>
+                    </div>
+                    <p class="text-blue-700 text-sm font-medium">The link has been saved for later.</p>
+                </div>
+            </div>
         </div>
     </div>
 
