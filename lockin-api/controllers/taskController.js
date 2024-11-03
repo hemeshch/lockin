@@ -76,7 +76,7 @@ export const createInitialTask = async (req, res) => {
 
 export const checkTask = async (req, res) => {
 	try {
-		const { titleTab, goalNeeded } = req.body
+		const { titleTab, goalNeeded, URLTab } = req.body
 		console.log(titleTab, goalNeeded)
 
 		const isRelevant = await checkRelevanceMiniLM(goalNeeded, titleTab)
@@ -94,7 +94,7 @@ export const checkTask = async (req, res) => {
 							role: 'system',
 						},
 						{
-							content: `Goal: ${goalNeeded}. \n Current Browser Tab Title: ${titleTab}`,
+							content: `Goal: ${goalNeeded}. \n Current Browser Tab Title: ${titleTab} \n Current URL: ${URLTab}`,
 							role: 'user',
 						},
 					],
