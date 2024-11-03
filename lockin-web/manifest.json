@@ -1,0 +1,21 @@
+{
+	"manifest_version": 3,
+	"name": "LockIn",
+	"description": "",
+	"version": "0.1",
+	"action": {
+		"default_popup": "files/dashboard.html"
+	},
+	"permissions": ["tabs", "webNavigation", "activeTab", "storage"],
+	"host_permissions": ["<all_urls>"],
+	"chrome_url_overrides": {
+		"newtab": "files/dashboard.html"
+	},
+	"background": {
+		"service_worker": "background.js",
+		"type": "module"
+	},
+	"content_security_policy": {
+		"extension_pages": "script-src 'self'; object-src 'self'"
+	}
+}

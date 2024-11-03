@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Time</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f7ff 0%, #fff5f5 100%);
+            min-height: 100vh;
+            background-image: url('./assets/images/saturn-bg.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timer-text {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+
+<body class="p-4 md:p-8">
+    <div class="max-w-2xl w-full bg-white/95 p-6 md:p-8 rounded-2xl shadow-xl backdrop-blur-sm">
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-indigo-900 mb-2">You are locked in!</h1>
+            <p class="text-gray-600" id="focus-task">Task: Write the FILM Paper on Frankenstein (1931)</p>
+        </div>
+
+        <!-- Timer Section -->
+        <div class="text-center mb-10">
+            <div class="timer-text text-8xl font-bold text-indigo-900 mb-8" id="timer">25:00</div>
+            <div class="flex justify-center gap-4">
+                <button id="stop-btn" onclick="stopTimer()"
+                    class="px-8 py-3 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-colors duration-200 font-medium shadow-md hover:shadow-lg">
+                    Stop
+                </button>
+                <button id="pause-btn" onclick="togglePause()"
+                    class="px-8 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors duration-200 font-medium shadow-md hover:shadow-lg">
+                    Pause
+                </button>
+            </div>
+        </div>
+
+        <!-- Motivation Section -->
+        <div class="text-center">
+            <p class="text-xl text-gray-700 italic">"Stay focused, stay driven."</p>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft;
+        let timerId = null;
+        let isPaused = false;
+
+        // Get task and duration from URL parameters
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const task = urlParams.get('task');
+            const duration = parseInt(urlParams.get('duration')) || 25;
+
+            if (task) {
+                document.getElementById('focus-task').textContent = `Task: ${task}`;
+            }
+
+            timeLeft = duration * 60;
+            updateTimerDisplay();
+            startTimer();
+        };
+
+        function startTimer() {
+            if (!timerId) {
+                timerId = setInterval(updateTimer, 1000);
+            }
+        }
+
+        function updateTimer() {
+            if (!isPaused && timeLeft > 0) {
+                timeLeft--;
+                updateTimerDisplay();
+            } else if (timeLeft === 0) {
+                clearInterval(timerId);
+                alert("Time's up! Great work!");
+            }
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer').textContent =
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            const pauseBtn = document.getElementById('pause-btn');
+            pauseBtn.textContent = isPaused ? 'Resume' : 'Pause';
+        }
+
+        function stopTimer() {
+            if (confirm('Are you sure you want to stop your focus session?')) {
+                window.location.href = 'dashboard.html';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

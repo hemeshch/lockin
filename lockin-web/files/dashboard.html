@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LockIn!</title>
+    <link href="./assets/css/flowbite.min.css" rel="stylesheet">
+    <script src="./assets/css/tailwind.min.css"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f7ff 0%, #fff5f5 100%);
+            min-height: 100vh;
+
+            background-image: url('./assets/images/saturn-bg.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+
+        .task-item {
+            transition: all 0.2s ease;
+        }
+
+        .task-item:hover {
+            background-color: #f3f4f6;
+        }
+
+        .custom-checkbox {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4f46e5;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .custom-checkbox:checked {
+            background-color: #4f46e5;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='24px' height='24px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+            background-size: 14px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .delete-btn {
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .task-item:hover .delete-btn {
+            opacity: 1;
+        }
+
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #4f46e5 #f3f4f6;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f3f4f6;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #4f46e5;
+            border-radius: 3px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .subtle-button {
+            background-color: transparent;
+            color: #4f46e5;
+            border: 1px solid #4f46e5;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .subtle-button:hover {
+            background-color: #4f46e5;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white/95 p-6 md:p-8 rounded-2xl shadow-xl backdrop-blur-sm">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+            <div>
+                <h1 class="text-4xl font-bold text-indigo-900 mb-2">👋 Hello, Hemesh!</h1>
+            </div>
+            <button id="saved-links-btn" class="subtle-button">
+                Saved Links
+            </button>
+        </div>
+
+        <div>
+            <form>
+                <div class="flex gap-4 mb-4">
+                    <div class="w-full">
+                        <label for="duration" class="block text-sm font-medium text-gray-700 mb-2">Select Focus
+                            Duration</label>
+                        <select id="duration" name="duration"
+                            class="duration-select w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-700 transition-all duration-200">
+                            <option value="10">10 minutes</option>
+                            <option value="25" selected>25 minutes</option>
+                            <option value="30">30 minutes</option>
+                            <option value="60">1 hour</option>
+                            <option value="90">1 hour 30 minutes</option>
+                            <option value="120">2 hours</option>
+                            <option value="150">2 hour 30 minutes</option>
+                            <option value="180">3 hours</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <label class="block text-sm font-medium text-gray-700 mb-2">Enter Your Current Focus</label>
+                <textarea name="currentTask" id="currentTask" placeholder="What are you working on right now?"
+                    class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent h-32 resize-none text-gray-700 placeholder-gray-400 transition-all duration-200"></textarea>
+
+                <button id="startTaskButton"
+                    class="mt-4 w-full bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-colors duration-200 font-medium shadow-md hover:shadow-lg">
+                    Time to Lock in!
+                </button>
+
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Timer module -->
+    <div class="max-w-4xl mx-auto bg-white/95 p-6 md:p-8 rounded-2xl shadow-xl backdrop-blur-sm mt-10 hidden">
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-indigo-900 mb-2">You are locked in!</h1>
+            <p class="text-gray-600" id="focus-task">Task: Write the FILM Paper on Frankenstein (1931)</p>
+        </div>
+
+        <!-- Timer Section -->
+        <div class="text-center mb-10">
+            <div class="timer-text text-8xl font-bold text-indigo-900 mb-8" id="timer">00:25:00</div>
+            <div class="flex justify-center gap-4">
+                <button id="stop-btn"
+                    class="px-8 py-3 bg-red-500 text-white rounded-xl hover:bg-red-600 transition-colors duration-200 font-medium shadow-md hover:shadow-lg">
+                    Stop
+                </button>
+                <button id="pause-btn"
+                    class="px-8 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors duration-200 font-medium shadow-md hover:shadow-lg">
+                    Pause
+                </button>
+            </div>
+        </div>
+
+        <!-- Motivation Section -->
+        <div class="text-center">
+            <p class="text-xl text-gray-700 italic">"Stay focused, stay driven."</p>
+        </div>
+    </div>
+
+    <!-- Saved links modal module -->
+    <div id="saved-links-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h2 class="text-2xl font-bold text-indigo-900 mb-4">Saved Links</h2>
+            <ul id="saved-links-list" class="space-y-2">
+                <li><a href="https://example.com" target="_blank" class="text-blue-600 hover:underline">Example Link
+                        1</a></li>
+                <li><a href="https://example.com" target="_blank" class="text-blue-600 hover:underline">Example Link
+                        2</a></li>
+                <li><a href="https://example.com" target="_blank" class="text-blue-600 hover:underline">Example Link
+                        3</a></li>
+                <!-- Add more links as needed -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="./assets/js/flowbite.min.js"></script>
+    <script src="timer.js"></script>
+    <script src="modal.js"></script>
+    <script src="popup.js"></script>
+    <script src="todo.js"></script>
+
+</body>
+
+</html>
