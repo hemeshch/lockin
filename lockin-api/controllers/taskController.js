@@ -90,16 +90,17 @@ export const checkTask = async (req, res) => {
 					temperature: 0,
 					messages: [
 						{
-							content: `Help the user stay on top of completing their task. Is the current tab possibly related to achieving the goal? Just reply with a Yes or No.`,
 							role: 'system',
+							content: `Help the user stay on top of completing their task. Is the current tab possibly related to achieving the goal? Carefully check YouTube videos. Just reply with a Yes or No.`,
 						},
 						{
-							content: `Goal: ${goalNeeded}. \n Current Browser Tab Title: ${titleTab} \n Current URL: ${URLTab}`,
+							content: `Goal: ${goalNeeded}. \n Current Browser Tab Title: ${titleTab}`,
 							role: 'user',
 						},
 					],
 				})
 
+				console.log(goalNeeded, titleTab, URLTab)
 				console.log("AI's opinion:", completion.choices[0].message)
 				res.json({
 					result: completion.choices[0].message,
