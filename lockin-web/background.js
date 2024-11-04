@@ -1,4 +1,4 @@
-let allowedWebsites = ['google.com', 'notion.so', 'chrome://', 'chrome-extension://', 'asana.com', 'perplexity.ai', 'chatgpt.com', 'wikipedia.org', 'stackoverflow.com', 'github.com', 'khanacademy.org', 'claude.ai']
+let allowedWebsites = ['google.com', 'notion.so', 'chrome://', 'chrome-extension://', 'asana.com', 'perplexity.ai', 'chatgpt.com', 'wikipedia.org', 'stackoverflow.com', 'github.com', 'khanacademy.org', 'claude.ai', 'youtube.com/watch?v=0b0axfyJ4oo']
 let taskSpecificWebsites = []
 let currentTask = ''
 let savedBlockLinks = []
